@@ -1,0 +1,3 @@
+[submodule "libldac"]
+	path = libldac
+	url = https://gitlab.com/eh5/libldac.git
