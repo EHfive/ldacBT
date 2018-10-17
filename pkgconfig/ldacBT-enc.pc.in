@@ -8,4 +8,5 @@ Description: LDAC Bluetooth encoder.
 Version: @VERSION@
 
 Libs: -L@PC_VAL_LIBDIR@ -lldacBT_enc
+Libs.private: -lm
 Cflags: -I@PC_VAL_INCLUDEDIR@
