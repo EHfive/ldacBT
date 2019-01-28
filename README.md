@@ -26,17 +26,22 @@ make DESTDIR=$DEST_DIR install
 **Tree**
 
 ```
-usr/
-├── include
-│   └── ldac
-│       ├── ldacBT_abr.h
-│       └── ldacBT.h
-└── lib
-    ├── libldacBT_abr.so
-    ├── libldacBT_enc.so
-    └── pkgconfig
-        ├── ldacBT-abr.pc
-        └── ldacBT-enc.pc
+DESTDIR
+└── usr
+    ├── include
+    │   └── ldac
+    │       ├── ldacBT_abr.h
+    │       └── ldacBT.h
+    └── lib
+        ├── libldacBT_abr.so -> libldacBT_abr.so.2
+        ├── libldacBT_abr.so.2 -> libldacBT_abr.so.2.0.2.2
+        ├── libldacBT_abr.so.2.0.2.2
+        ├── libldacBT_enc.so -> libldacBT_enc.so.2
+        ├── libldacBT_enc.so.2 -> libldacBT_enc.so.2.0.2.2
+        ├── libldacBT_enc.so.2.0.2.2
+        └── pkgconfig
+            ├── ldacBT-abr.pc
+            └── ldacBT-enc.pc
 ```
 
 ### Copyright
