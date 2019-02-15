@@ -13,7 +13,17 @@ if("${INSTALL_LIBDIR}" STREQUAL "")
     set(INSTALL_LIBDIR ${CMAKE_INSTALL_PREFIX}/lib)
 endif()
 
-set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_PREFIX}/include/ldac)
+if("${INSTALL_INCLUDEDIR}" STREQUAL "")
+    set(INSTALL_INCLUDEDIR ${CMAKE_INSTALL_PREFIX}/include)
+endif()
+
+if("${INSTALL_PKGCONFIGDIR}" STREQUAL "")
+    set(INSTALL_PKGCONFIGDIR ${INSTALL_LIBDIR}/pkgconfig)
+endif()
+
+if("${INSTALL_LDAC_INCLUDEDIR}" STREQUAL "")
+    set(INSTALL_LDAC_INCLUDEDIR ${INSTALL_INCLUDEDIR}/ldac)
+endif()
 
 set(LDACBT_LIB_VER_MAJOR   2)
 set(LDACBT_LIB_VER_MINOR   0)
@@ -63,5 +73,5 @@ install(FILES
         libldac/inc/ldacBT.h
         libldac/abr/inc/ldacBT_abr.h
         DESTINATION
-        ${INSTALL_INCLUDEDIR}
+        ${INSTALL_LDAC_INCLUDEDIR}
         )

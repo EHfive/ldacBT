@@ -23,6 +23,16 @@ cmake \
 make DESTDIR=$DEST_DIR install
 ```
 
+#### Cmake options
+| option/definition | description | default value |
+|--------|-------------|---------------|
+|CMAKE_INSTALL_PREFIX|
+|INSTALL_LIBDIR|path to shared libraries dir|${CMAKE_INSTALL_PREFIX}/lib|
+|INSTALL_INCLUDEDIR|path to header include dir|${CMAKE_INSTALL_PREFIX}/include|
+|INSTALL_PKGCONFIGDIR|path to pkg-config dir|${INSTALL_LIBDIR}/pkgconfig|
+|INSTALL_LDAC_INCLUDEDIR|path to ldacBT headers dir|${INSTALL_INCLUDEDIR}/ldac|
+|LDAC_SOFT_FLOAT|ON/OFF inner soft-float function|OFF|
+
 **Tree**
 
 ```
