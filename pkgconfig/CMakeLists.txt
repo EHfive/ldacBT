@@ -1,11 +1,11 @@
 set(PREFIX ${CMAKE_INSTALL_PREFIX})
 set(LIBDIR ${INSTALL_LIBDIR})
 set(INCLUDEDIR ${INSTALL_LDAC_INCLUDEDIR})
-set(VERSION ${LIBLDAC_MAJOR_MINOR_BRANCH})
+set(VERSION ${LIBLDAC_VERSION})
 
-set(PC_VAL_PREFIX "\${prefix}")
-set(PC_VAL_LIBDIR "\${libdir}")
-set(PC_VAL_INCLUDEDIR "\${includedir}")
+set(PC_VAR_PREFIX "\${prefix}")
+set(PC_VAR_LIBDIR "\${libdir}")
+set(PC_VAR_INCLUDEDIR "\${includedir}")
 
 message(${CMAKE_CURRENT_BINARY_DIR})
 

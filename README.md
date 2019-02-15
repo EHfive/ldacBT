@@ -33,27 +33,6 @@ make DESTDIR=$DEST_DIR install
 |INSTALL_LDAC_INCLUDEDIR|path to ldacBT headers dir|${INSTALL_INCLUDEDIR}/ldac|
 |LDAC_SOFT_FLOAT|ON/OFF inner soft-float function|OFF|
 
-**Tree**
-
-```
-DESTDIR
-└── usr
-    ├── include
-    │   └── ldac
-    │       ├── ldacBT_abr.h
-    │       └── ldacBT.h
-    └── lib
-        ├── libldacBT_abr.so -> libldacBT_abr.so.2
-        ├── libldacBT_abr.so.2 -> libldacBT_abr.so.2.0.2.2
-        ├── libldacBT_abr.so.2.0.2.2
-        ├── libldacBT_enc.so -> libldacBT_enc.so.2
-        ├── libldacBT_enc.so.2 -> libldacBT_enc.so.2.0.2.2
-        ├── libldacBT_enc.so.2.0.2.2
-        └── pkgconfig
-            ├── ldacBT-abr.pc
-            └── ldacBT-enc.pc
-```
-
 ### Copyright
 
 #### libldac

@@ -4,7 +4,7 @@ project(libldac C)
 set(CMAKE_C_STANDARD 99)
 
 
-option(LDAC_SOFT_FLOAT "For devices without a FPU" OFF)
+option(LDAC_SOFT_FLOAT "For device without FPU, turn on this option" OFF)
 if(${LDAC_SOFT_FLOAT} STREQUAL ON)
     set(LDAC_SOFT_FLOAT_DEFINE "-D_32BIT_FIXED_POINT")
 endif()
@@ -28,10 +28,9 @@ endif()
 set(LDACBT_LIB_VER_MAJOR   2)
 set(LDACBT_LIB_VER_MINOR   0)
 set(LDACBT_LIB_VER_BRANCH  2)
-set(LDACBT_SOURCE_VER  2)
+set(LDACBT_SOURCE_VER  3)
 
-set(LIBLDAC_MAJOR_MINOR_BRANCH "${LDACBT_LIB_VER_MAJOR}.${LDACBT_LIB_VER_MINOR}.${LDACBT_LIB_VER_BRANCH}.${LDACBT_SOURCE_VER}")
-set(SOVERSION ${LIBLDAC_MAJOR_MINOR_BRANCH})
+set(LIBLDAC_VERSION "${LDACBT_LIB_VER_MAJOR}.${LDACBT_LIB_VER_MINOR}.${LDACBT_LIB_VER_BRANCH}.${LDACBT_SOURCE_VER}")
 
 add_subdirectory(pkgconfig)
 
@@ -47,7 +46,7 @@ add_library(ldacBT_enc SHARED
 target_link_libraries(ldacBT_enc m)
 target_compile_definitions(ldacBT_enc PUBLIC ${LDAC_SOFT_FLOAT_DEFINE})
 set_target_properties(ldacBT_enc PROPERTIES
-        VERSION ${LIBLDAC_MAJOR_MINOR_BRANCH}
+        VERSION ${LIBLDAC_VERSION}
         SOVERSION ${LDACBT_LIB_VER_MAJOR}
         )
 
@@ -58,7 +57,7 @@ add_library(ldacBT_abr SHARED
 
 target_link_libraries(ldacBT_abr ldacBT_enc)
 set_target_properties(ldacBT_abr PROPERTIES
-        VERSION ${LIBLDAC_MAJOR_MINOR_BRANCH}
+        VERSION ${LIBLDAC_VERSION}
         SOVERSION ${LDACBT_LIB_VER_MAJOR}
         )
 
