@@ -4,7 +4,7 @@ AOSP libldac dispatcher
 
 https://android.googlesource.com/platform/external/libldac
 
-### Build
+## Build
 ```bash
 git clone https://github.com/EHfive/ldacBT.git
 cd ldacBT
@@ -23,7 +23,7 @@ cmake \
 make DESTDIR=$DEST_DIR install
 ```
 
-#### Cmake options
+### Cmake options
 | option/definition | description | default value |
 |--------|-------------|---------------|
 |CMAKE_INSTALL_PREFIX|
@@ -33,9 +33,9 @@ make DESTDIR=$DEST_DIR install
 |INSTALL_LDAC_INCLUDEDIR|path to ldacBT headers dir|${INSTALL_INCLUDEDIR}/ldac|
 |LDAC_SOFT_FLOAT|ON/OFF inner soft-float function|OFF|
 
-### Copyright
+## Copyright
 
-#### libldac
+### libldac
 ```
  Copyright (C) 2013 - 2016 Sony Corporation
  
@@ -52,9 +52,20 @@ make DESTDIR=$DEST_DIR install
   limitations under the License.
 ```
 
-#### this repo
+NOTICE
 ```
- Copyright 2018 Huang-Huang Bao <eh5@sokka.cn>
+---------------
+ Certification
+---------------
+   Taking the certification process is required to use LDAC in your products.
+   For the detail of certification process, see the following URL:
+      https://www.sony.net/Products/LDAC/aosp/
+
+```
+
+### this repo
+```
+ Copyright 2018-2019 Huang-Huang Bao
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
