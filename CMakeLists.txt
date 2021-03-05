@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
-project(libldac C)
+project(libldac
+        LANGUAGES C
+        VERSION 2.0.2.3)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -25,13 +27,6 @@ if("${INSTALL_LDAC_INCLUDEDIR}" STREQUAL "")
     set(INSTALL_LDAC_INCLUDEDIR ${INSTALL_INCLUDEDIR}/ldac)
 endif()
 
-set(LDACBT_LIB_VER_MAJOR   2)
-set(LDACBT_LIB_VER_MINOR   0)
-set(LDACBT_LIB_VER_BRANCH  2)
-set(LDACBT_SOURCE_VER  3)
-
-set(LIBLDAC_VERSION "${LDACBT_LIB_VER_MAJOR}.${LDACBT_LIB_VER_MINOR}.${LDACBT_LIB_VER_BRANCH}.${LDACBT_SOURCE_VER}")
-
 add_subdirectory(pkgconfig)
 
 include_directories(libldac/inc)
@@ -46,8 +41,9 @@ add_library(ldacBT_enc SHARED
 target_link_libraries(ldacBT_enc m)
 target_compile_definitions(ldacBT_enc PUBLIC ${LDAC_SOFT_FLOAT_DEFINE})
 set_target_properties(ldacBT_enc PROPERTIES
-        VERSION ${LIBLDAC_VERSION}
-        SOVERSION ${LDACBT_LIB_VER_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
+        PUBLIC_HEADER libldac/inc/ldacBT.h
         )
 
 # libldacBT_abr
@@ -57,20 +53,17 @@ add_library(ldacBT_abr SHARED
 
 target_link_libraries(ldacBT_abr ldacBT_enc)
 set_target_properties(ldacBT_abr PROPERTIES
-        VERSION ${LIBLDAC_VERSION}
-        SOVERSION ${LDACBT_LIB_VER_MAJOR}
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
+        PUBLIC_HEADER libldac/abr/inc/ldacBT_abr.h
         )
 
 install(TARGETS
-        ldacBT_enc
-        ldacBT_abr
-        LIBRARY DESTINATION
-        ${INSTALL_LIBDIR}
+                ldacBT_enc
+                ldacBT_abr
+        LIBRARY
+                DESTINATION ${INSTALL_LIBDIR}
+        PUBLIC_HEADER
+                DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
         )
 
-install(FILES
-        libldac/inc/ldacBT.h
-        libldac/abr/inc/ldacBT_abr.h
-        DESTINATION
-        ${INSTALL_LDAC_INCLUDEDIR}
-        )

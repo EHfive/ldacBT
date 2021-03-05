@@ -7,8 +7,6 @@ set(PC_VAR_PREFIX "\${prefix}")
 set(PC_VAR_LIBDIR "\${libdir}")
 set(PC_VAR_INCLUDEDIR "\${includedir}")
 
-message(${CMAKE_CURRENT_BINARY_DIR})
-
 configure_file(
         ldacBT-enc.pc.in
         ldacBT-enc.pc
