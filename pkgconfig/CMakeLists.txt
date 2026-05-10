@@ -16,8 +16,14 @@ configure_file(
         ldacBT-abr.pc
 )
 
+configure_file(
+	ldacBT-dec.pc.in
+	ldacBT-dec.pc
+)
+
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/ldacBT-enc.pc
         ${CMAKE_CURRENT_BINARY_DIR}/ldacBT-abr.pc
+	${CMAKE_CURRENT_BINARY_DIR}/ldacBT-dec.pc
         DESTINATION
         ${INSTALL_PKGCONFIGDIR})

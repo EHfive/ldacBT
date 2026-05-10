@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(libldac
         LANGUAGES C
-        VERSION 2.0.2.3)
+        VERSION 2.0.4)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -46,6 +46,20 @@ set_target_properties(ldacBT_enc PROPERTIES
         PUBLIC_HEADER libldac/inc/ldacBT.h
         )
 
+# libldacBT_dec
+add_library(ldacBT_dec SHARED
+        libldac/src/ldaclib.c
+        libldac/src/ldacBT.c
+        )
+
+target_link_libraries(ldacBT_enc m)
+target_compile_definitions(ldacBT_enc PUBLIC ${LDAC_SOFT_FLOAT_DEFINE})
+set_target_properties(ldacBT_enc PROPERTIES
+        VERSION ${PROJECT_VERSION}
+        SOVERSION ${PROJECT_VERSION_MAJOR}
+        PUBLIC_HEADER libldac/inc/ldacBT.h
+        )
+
 # libldacBT_abr
 add_library(ldacBT_abr SHARED
         libldac/abr/src/ldacBT_abr.c
@@ -60,10 +74,10 @@ set_target_properties(ldacBT_abr PROPERTIES
 
 install(TARGETS
                 ldacBT_enc
-                ldacBT_abr
+                ldacBT_dec
+		ldacBT_abr
         LIBRARY
                 DESTINATION ${INSTALL_LIBDIR}
         PUBLIC_HEADER
                 DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
         )
-
