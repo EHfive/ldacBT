@@ -32,6 +32,10 @@ add_subdirectory(pkgconfig)
 include_directories(libldac/inc)
 include_directories(libldac/abr/inc)
 
+execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+
 # libldacBT_enc
 add_library(ldacBT_enc SHARED
         libldac/src/ldaclib.c
