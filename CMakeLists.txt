@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(libldac
         LANGUAGES C
-        VERSION 2.0.4)
+        VERSION 2.0.3)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -52,9 +52,9 @@ add_library(ldacBT_dec SHARED
         libldac/src/ldacBT.c
         )
 
-target_link_libraries(ldacBT_enc m)
-target_compile_definitions(ldacBT_enc PUBLIC ${LDAC_SOFT_FLOAT_DEFINE})
-set_target_properties(ldacBT_enc PROPERTIES
+target_link_libraries(ldacBT_dec m)
+target_compile_definitions(ldacBT_dec PUBLIC ${LDAC_SOFT_FLOAT_DEFINE})
+set_target_properties(ldacBT_dec PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
         PUBLIC_HEADER libldac/inc/ldacBT.h
@@ -65,7 +65,7 @@ add_library(ldacBT_abr SHARED
         libldac/abr/src/ldacBT_abr.c
         )
 
-target_link_libraries(ldacBT_abr ldacBT_enc)
+target_link_libraries(ldacBT_abr ldacBT_enc ldacBT_dec)
 set_target_properties(ldacBT_abr PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION ${PROJECT_VERSION_MAJOR}
@@ -80,4 +80,11 @@ install(TARGETS
                 DESTINATION ${INSTALL_LIBDIR}
         PUBLIC_HEADER
                 DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
-        )
+	)
+
+
+install(FILES
+	libldacBT_dec.h 
+	DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
+)
+	
