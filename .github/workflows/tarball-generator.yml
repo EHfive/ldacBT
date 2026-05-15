@@ -11,6 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          ref: c3752a40c210044ddea5a2c56ce9fda2cee9e4cc
           fetch-depth: 0
           submodules: 'recursive'
 
