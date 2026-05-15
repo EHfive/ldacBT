@@ -17,13 +17,13 @@ jobs:
       - name: Package Project
         run: |
           cd /home/runner/work/ldacBT/
-          tar -czf /home/runner/work/ldacBT/libldac-2.0.3.tar.gz ldacBT
+          tar -czf /home/runner/work/ldacBT/ldacBT-2.0.3.tar.gz ldacBT
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: libldac-2.0.3.tar.gz
-          path: /home/runner/work/ldacBT/libldac-2.0.3.tar.gz
+          path: /home/runner/work/ldacBT/ldacBT-2.0.3.tar.gz
           
       - name: Release "libldac tarball release"
         uses: softprops/action-gh-release@v1
@@ -32,4 +32,4 @@ jobs:
          tag_name: workflow_${{github.run_number}}
          name: Release ${{github.run_number}}
          files: |
-            /home/runner/work/ldacBT/libldac-2.0.3.tar.gz
+            /home/runner/work/ldacBT/ldacBT-2.0.3.tar.gz
