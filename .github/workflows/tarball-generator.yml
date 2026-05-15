@@ -17,6 +17,8 @@ jobs:
       - name: Package Project
         run: |
           cd /home/runner/work/ldacBT/
+          git apply 0001-hack-Try-to-fix-broken-API.patch -v
+          rm 0001-hack-Try-to-fix-broken-API.patch 
           tar -czf /home/runner/work/ldacBT/ldacBT-2.0.3.tar.gz ldacBT
         
       - name: Upload Artifact
