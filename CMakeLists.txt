@@ -29,9 +29,7 @@ endif()
 
 option(APPLY_PATCHES "For tarballs releases just ignore it" FALSE)
 if("${APPLY_PATCHES}" STREQUAL TRUE)
-	execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
-                	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
+	set(LDACBT_APPLY_PATCHES "TRUE")
 endif()
 
 add_subdirectory(pkgconfig)
@@ -39,6 +37,10 @@ add_subdirectory(pkgconfig)
 include_directories(libldac/inc)
 include_directories(libldac/abr/inc)
 
+if("$LDACBT_APPLY_PATCHES" STREQUAL TRUE)
+	execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
+                        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+endif()
 
 # libldacBT_enc
 add_library(ldacBT_enc SHARED
