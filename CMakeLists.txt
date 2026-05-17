@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0...3.10)
 project(libldac
         LANGUAGES C
-        VERSION 2.0.3)
+        VERSION 2.0.3.1)
 
 set(CMAKE_C_STANDARD 99)
 
@@ -27,14 +27,20 @@ if("${INSTALL_LDAC_INCLUDEDIR}" STREQUAL "")
     set(INSTALL_LDAC_INCLUDEDIR ${INSTALL_INCLUDEDIR}/ldac)
 endif()
 
+option(APPLY_PATCHES "For tarballs releases just ignore it" FALSE)
+if("${APPLY_PATCHES}" STREQUAL TRUE)
+	set(LDACBT_APPLY_PATCHES "TRUE")
+endif()
+
 add_subdirectory(pkgconfig)
 
 include_directories(libldac/inc)
 include_directories(libldac/abr/inc)
 
-execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
-                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
+if("$LDACBT_APPLY_PATCHES" STREQUAL TRUE)
+	execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
+                        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+endif()
 
 # libldacBT_enc
 add_library(ldacBT_enc SHARED
