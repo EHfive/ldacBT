@@ -1,0 +1,18 @@
+option('abr', type : 'feature',
+        value : 'auto', description : 'ABR(Adaptative Bitrate) library')
+option('ldac_decoder',
+        type: 'feature', value : 'disabled', description : 'LDAC Decoder. Default: disabled')
+option('ldac_encoder',
+        type : 'feature',
+        value : 'enabled',
+        description : 'LDAC encoder. Default: disabled')
+option('ldac_soft_float',
+        type : 'feature',
+        value : 'disabled',
+        description : 'Build with Soft Float type. required on embedded platforms which doesn\\t have a FPU')
+option('install_license',
+        type : 'boolean',
+        value : 'false',
+        description : 'Install license file. Not necessary if meson option --licensedir declared')
+option('single_library',
+        type : 'boolean', value : 'true', description : 'Build ldacBT unified library. Default: true')
