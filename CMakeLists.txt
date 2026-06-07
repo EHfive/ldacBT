@@ -75,7 +75,7 @@ set_target_properties(ldacBT_abr PROPERTIES
 install(TARGETS
                 ldacBT_enc
                 ldacBT_dec
-		ldacBT_abr
+                ldacBT_abr
         LIBRARY
                 DESTINATION ${INSTALL_LIBDIR}
         PUBLIC_HEADER
