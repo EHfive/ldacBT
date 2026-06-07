@@ -6,7 +6,7 @@ https://android.googlesource.com/platform/external/libldac
 
 ## Build
 ```bash
-git clone https://github.com/EHfive/ldacBT.git
+git clone https://github.com/EliasTheBigMasterofIssues/ldacBT
 cd ldacBT
 git submodule update --init
 ```
