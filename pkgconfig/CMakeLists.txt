@@ -24,6 +24,6 @@ configure_file(
 install(FILES
         ${CMAKE_CURRENT_BINARY_DIR}/ldacBT-enc.pc
         ${CMAKE_CURRENT_BINARY_DIR}/ldacBT-abr.pc
-	${CMAKE_CURRENT_BINARY_DIR}/ldacBT-dec.pc
+        ${CMAKE_CURRENT_BINARY_DIR}/ldacBT-dec.pc
         DESTINATION
         ${INSTALL_PKGCONFIGDIR})

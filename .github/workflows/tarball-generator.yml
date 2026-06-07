@@ -1,38 +1,35 @@
 name: Create Release Tarball
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-  
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: 'recursive'
+          submodules: "recursive"
 
       - name: Package Project
         run: |
-          cd /home/runner/work/ldacBT/ldacBT
-          git apply 0001-hack-Try-to-fix-broken-API.patch -v
-          rm 0001-hack-Try-to-fix-broken-API.patch
           cd /home/runner/work/ldacBT
-          tar -czf /home/runner/work/ldacBT/ldacBT-2.0.3.1.tar.gz ldacBT
-        
+          tar -czf /home/runner/work/ldacBT/ldacBT-2.1.0.0.tar.gz ldacBT
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: libldac-2.0.3.1.tar.gz
-          path: /home/runner/work/ldacBT/ldacBT-2.0.3.1.tar.gz
-          
-      - name: Release "libldac 2.0.3.1 tarball release"
+          name: libldac-2.1.0.0.tar.gz
+          path: /home/runner/work/ldacBT/ldacBT-2.1.0.0.tar.gz
+
+      - name: Release "libldac 2.1.0.0 tarball release"
         uses: softprops/action-gh-release@v1
         with:
-         body: 
-         tag_name: workflow_${{github.run_number}}
-         name: Release ${{github.run_number}}
-         files: |
-            /home/runner/work/ldacBT/ldacBT-2.0.3.1.tar.gz
+          body:
+          tag_name: workflow_${{github.run_number}}
+          name: Release ${{github.run_number}}
+          files: |
+            /home/runner/work/ldacBT/ldacBT-2.1.0.0.tar.gz

@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.0...3.10)
 project(libldac
         LANGUAGES C
-        VERSION 2.0.3.1)
+        VERSION 2.1.0.0)
 
 set(CMAKE_C_STANDARD 99)
 
+message(WARNING "Use CMake to build libldac is deprecated, and is not more supported, please use Meson")
 
 option(LDAC_SOFT_FLOAT "For device without FPU, turn on this option" OFF)
 if(${LDAC_SOFT_FLOAT} STREQUAL ON)
@@ -27,20 +28,10 @@ if("${INSTALL_LDAC_INCLUDEDIR}" STREQUAL "")
     set(INSTALL_LDAC_INCLUDEDIR ${INSTALL_INCLUDEDIR}/ldac)
 endif()
 
-option(APPLY_PATCHES "For tarballs releases just ignore it" FALSE)
-if("${APPLY_PATCHES}" STREQUAL TRUE)
-	set(LDACBT_APPLY_PATCHES "TRUE")
-endif()
-
 add_subdirectory(pkgconfig)
 
 include_directories(libldac/inc)
 include_directories(libldac/abr/inc)
-
-if("$LDACBT_APPLY_PATCHES" STREQUAL TRUE)
-	execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
-                        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-endif()
 
 # libldacBT_enc
 add_library(ldacBT_enc SHARED
@@ -85,16 +76,9 @@ set_target_properties(ldacBT_abr PROPERTIES
 install(TARGETS
                 ldacBT_enc
                 ldacBT_dec
-		ldacBT_abr
+                ldacBT_abr
         LIBRARY
                 DESTINATION ${INSTALL_LIBDIR}
         PUBLIC_HEADER
                 DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
 	)
-
-
-install(FILES
-	libldacBT_dec.h 
-	DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
-)
-	
