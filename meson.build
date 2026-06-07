@@ -1,5 +1,5 @@
 project('libldac', ['c'],
- version : '2.0.3.1',
+ version : '2.1.0.0',
  license : 'Apache-2.0',
  license_files : [ 'LICENSE' ],
  meson_version : '>= 1.9.0',
@@ -81,7 +81,7 @@ if single_lib
     				dependencies : [ mathlib ],
     				c_args : cc_flags,
     				install_dir : libldac_libdir,
-    				soversion : '2.0.3.1',
+    				soversion : '2.1.0.0',
     				install : true,
     				)
     				ldac += [ ldacBT_lib ]
@@ -95,7 +95,7 @@ if not single_lib
 				dependencies : [ mathlib ],
 				c_args : [ cc_flags, '-D_ENCODE_ONLY' ],
 				install_dir : libldac_libdir,
-				soversion: '2.0.3.1',
+				soversion: '2.1.0.0',
 				install : true,
                 )
                 ldac += [ ldacBT_enc_lib ]
@@ -107,7 +107,7 @@ if not single_lib
 				dependencies : [ mathlib ],
 				c_args : [ cc_flags, '-D_DECODE_ONLY' ],
 				install_dir : libldac_libdir,
-				soversion : '2.0.3.1',
+				soversion : '2.1.0.0',
 				install : true,
 				)
     endif
@@ -121,7 +121,7 @@ if build_abr
         				c_args : cc_flags,
         				link_with : ldac,
         				install_dir : libldac_libdir,
-        				soversion : '2.0.3.1',
+        				soversion : '2.1.0.0',
         				install : true,
         )
 endif
