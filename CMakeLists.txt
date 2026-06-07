@@ -5,6 +5,7 @@ project(libldac
 
 set(CMAKE_C_STANDARD 99)
 
+message(WARNING "Use CMake to build libldac is deprecated, and is not more supported, please use Meson")
 
 option(LDAC_SOFT_FLOAT "For device without FPU, turn on this option" OFF)
 if(${LDAC_SOFT_FLOAT} STREQUAL ON)
