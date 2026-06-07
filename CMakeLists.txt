@@ -27,20 +27,10 @@ if("${INSTALL_LDAC_INCLUDEDIR}" STREQUAL "")
     set(INSTALL_LDAC_INCLUDEDIR ${INSTALL_INCLUDEDIR}/ldac)
 endif()
 
-option(APPLY_PATCHES "For tarballs releases just ignore it" FALSE)
-if("${APPLY_PATCHES}" STREQUAL TRUE)
-	set(LDACBT_APPLY_PATCHES "TRUE")
-endif()
-
 add_subdirectory(pkgconfig)
 
 include_directories(libldac/inc)
 include_directories(libldac/abr/inc)
-
-if("$LDACBT_APPLY_PATCHES" STREQUAL TRUE)
-	execute_process(COMMAND git apply "${CMAKE_SOURCE_DIR}/0001-hack-Try-to-fix-broken-API.patch"
-                        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-endif()
 
 # libldacBT_enc
 add_library(ldacBT_enc SHARED
@@ -94,7 +84,6 @@ install(TARGETS
 
 
 install(FILES
-	libldacBT_dec.h 
+	libldacBT_dec.h
 	DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
 )
-	
