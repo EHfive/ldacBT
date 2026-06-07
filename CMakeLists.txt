@@ -81,9 +81,3 @@ install(TARGETS
         PUBLIC_HEADER
                 DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
 	)
-
-
-install(FILES
-	libldacBT_dec.h
-	DESTINATION ${INSTALL_LDAC_INCLUDEDIR}
-)
