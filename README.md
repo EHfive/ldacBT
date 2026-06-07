@@ -13,6 +13,35 @@ git submodule update --init
 
 ----------
 
+## Meson: (Recommended)
+### Build a single library:
+```bash
+meson setup builddir \
+    -Dldac_encoder=enabled \
+    -Dsingle-library=true \
+    -Dinstall_license=true \
+    ../
+```
+
+### Build with Decoder capability:
+```bash
+meson setup builddir \
+    -Dldac_encoder=enabled \
+    -Dsingle-library=true \
+    -Dinstall_license=true \
+    ../
+```
+
+### Build splitted libraries: (Legacy)
+```bash
+meson setup builddir \
+    -Dldac_encoder=enabled \
+    -Dsingle-library=false \
+    -Dinstall_license=true \
+    ../
+```
+
+## CMake: (Deprecated)
 ```bash
 mkdir build && cd build
 cmake \
@@ -23,7 +52,7 @@ cmake \
 make DESTDIR=$DEST_DIR install
 ```
 
-### Cmake options
+### Cmake options: (Deprecated)
 | option/definition | description | default value |
 |--------|-------------|---------------|
 |CMAKE_INSTALL_PREFIX|
@@ -32,6 +61,7 @@ make DESTDIR=$DEST_DIR install
 |INSTALL_PKGCONFIGDIR|path to pkg-config dir|${INSTALL_LIBDIR}/pkgconfig|
 |INSTALL_LDAC_INCLUDEDIR|path to ldacBT headers dir|${INSTALL_INCLUDEDIR}/ldac|
 |LDAC_SOFT_FLOAT|ON/OFF inner soft-float function|OFF|
+
 
 ## Copyright
 
