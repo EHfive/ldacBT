@@ -15,4 +15,6 @@ option('install_license',
         value : 'false',
         description : 'Install license file. Not necessary if meson option --licensedir declared')
 option('single_library',
-        type : 'boolean', value : 'true', description : 'Build ldacBT unified library. Default: true')
+        type : 'boolean',
+        value : 'true',
+        description : 'Build ldacBT unified library. Default: true')
