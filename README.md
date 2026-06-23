@@ -1,6 +1,6 @@
 # ldacBT
 
-AOSP libldac dispatcher
+A CMake build script for AOSP libldac.
 
 https://android.googlesource.com/platform/external/libldac
 
@@ -32,6 +32,12 @@ make DESTDIR=$DEST_DIR install
 |INSTALL_PKGCONFIGDIR|path to pkg-config dir|${INSTALL_LIBDIR}/pkgconfig|
 |INSTALL_LDAC_INCLUDEDIR|path to ldacBT headers dir|${INSTALL_INCLUDEDIR}/ldac|
 |LDAC_SOFT_FLOAT|ON/OFF inner soft-float function|OFF|
+
+## Versioning
+
+The built .so are versioned after libldac's internal version, i.e. `2.0.2`.
+
+The build script is versioned by libldac version with a patch suffix, e.g. `2.0.2.x`.
 
 ## Copyright
 
