@@ -1,7 +1,8 @@
 set(PREFIX ${CMAKE_INSTALL_PREFIX})
 set(LIBDIR ${INSTALL_LIBDIR})
 set(INCLUDEDIR ${INSTALL_LDAC_INCLUDEDIR})
-set(VERSION ${PROJECT_VERSION})
+# pin 2.0.2.3 for compatibility
+set(VERSION 2.0.2.3)
 
 set(PC_VAR_PREFIX "\${prefix}")
 set(PC_VAR_LIBDIR "\${libdir}")
