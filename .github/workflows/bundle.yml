@@ -31,26 +31,20 @@ jobs:
 
           tar --exclude-vcs --exclude='.github' --exclude='.gitmodules' --exclude='build' \
             -cvzf ../ldacBT-${version}.tar.gz .
-          
-          echo "last_version=${last_version}" >> $GITHUB_OUTPUT
+
+          sed -n "/^## \[${last_version}]/,/^## \[/p" CHANGELOG.md | sed '1d;$d' | sed '/./,$!d' > ../VERSION_CHANGELOG.md
 
       - uses: actions/upload-artifact@v7
         with:
           name: artifact.zip
-          path: ldacBT-*.tar.gz
+          path: |
+            VERSION_CHANGELOG.md
+            ldacBT-*.tar.gz
           if-no-files-found: error
-
-      - name: Get Changelog Entry
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v2
-        with:
-          validation_level: warn
-          version: ${{ steps.bundle.outputs.last_version }}
-          path: ./ldacBT/CHANGELOG.md
 
       - name: Release
         if: github.ref_type == 'tag'
         uses: softprops/action-gh-release@v3
         with:
-          body: ${{ steps.changelog_reader.outputs.changes }}
+          body_path: VERSION_CHANGELOG.md
           files: ldacBT-*.tar.gz
