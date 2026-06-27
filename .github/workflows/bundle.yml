@@ -1,0 +1,54 @@
+name: Bundle tarball
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - "*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          path: ldacBT
+          submodules: recursive
+
+      - name: Bundle
+        id: bundle
+        run: |
+          cd ldacBT/
+          version=$(git describe --abbrev=7 --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g')
+          last_version=$(git describe --abbrev=0 --tags | sed 's/^v//')
+
+          tar --exclude-vcs --exclude='.github' --exclude='.gitmodules' --exclude='build' \
+            -cvzf ../ldacBT-${version}.tar.gz .
+          
+          echo "last_version=${last_version}" >> $GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: artifact.zip
+          path: ldacBT-*.tar.gz
+          if-no-files-found: error
+
+      - name: Get Changelog Entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          validation_level: warn
+          version: ${{ steps.bundle.outputs.last_version }}
+
+      - name: Release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v3
+        with:
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          files: ldacBT-*.tar.gz
